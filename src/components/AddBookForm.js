@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./AddBookForm.css";
 
 const AddBookForm = (props) => {
   const [title, setTitle] = useState("");
@@ -6,20 +7,23 @@ const AddBookForm = (props) => {
   const [pageCount, setPageCount] = useState("0");
   const [excerpt, setEXcerpt] = useState("");
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     if (title && description && pageCount && excerpt) {
       props.addBook({
         title,
         description,
         pageCount,
         excerpt,
+        publishDate: new Date(),
+        id: 0,
       });
     }
   };
 
   return (
     <form onSubmit={submitHandler}>
-      <div>
+      <div className="input-container">
         <label>Título</label>
         <input
           type="text"
@@ -29,7 +33,7 @@ const AddBookForm = (props) => {
           }}
         ></input>
       </div>
-      <div>
+      <div className="input-container">
         <label>Descripción</label>
         <input
           type="text"
@@ -39,7 +43,7 @@ const AddBookForm = (props) => {
           }}
         ></input>
       </div>
-      <div>
+      <div className="input-container">
         <label>Page Count</label>
         <input
           type="number"
@@ -49,7 +53,7 @@ const AddBookForm = (props) => {
           }}
         ></input>
       </div>
-      <div>
+      <div className="input-container">
         <label>Excerpt</label>
         <input
           type="text"
@@ -59,6 +63,9 @@ const AddBookForm = (props) => {
           }}
         ></input>
       </div>
+      <button className="abutton" onClick={submitHandler}>
+        Add
+      </button>
     </form>
   );
 };

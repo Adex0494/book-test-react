@@ -23,7 +23,19 @@ function App() {
   const [showTheAddBookForm, setShowTheAddBookForm] = useState(false);
   const [showBookList, setShowBookList] = useState(false);
 
-  const fetchAddBook = (book) => {};
+  const fetchAddBook = async (book) => {
+    const response = await fetch(
+      "https://fakerestapi.azurewebsites.net/api/v1/Books",
+      {
+        method: "POST",
+        body: JSON.stringify(book),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(response);
+  };
 
   const fetchGetBooks = async () => {
     const response = await fetch(
@@ -64,7 +76,6 @@ function App() {
           <NavButton
             onClick={() => {
               showAddBookForm();
-              fetchAddBook();
             }}
             text="Add a book"
           ></NavButton>
@@ -103,7 +114,9 @@ function App() {
 
         {showBookDetail && <BookDetail book={bookToShow}></BookDetail>}
 
-        {showTheAddBookForm && <AddBookForm></AddBookForm>}
+        {showTheAddBookForm && (
+          <AddBookForm addBook={fetchAddBook}></AddBookForm>
+        )}
       </header>
     </div>
   );

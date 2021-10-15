@@ -1,0 +1,29 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 7px;
+}
+
+.abutton {
+  height: 30px;
+  width: 100px;
+  border: solid white 2px;
+  border-radius: 20px;
+  background-color: grey;
+  color: white;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.abutton:hover {
+  background-color: #777;
+  cursor: pointer;
+}
+
+.abutton:active {
+  background-color: #888;
+}
